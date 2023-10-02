@@ -1,0 +1,158 @@
+* {
+  transition:.3s ease-in-out;
+}
+
+body {
+  overflow:hidden;
+  background: black;
+  color: lightgray;
+}
+
+%card-holder {
+  font-family:helvetica neue, helvetica, arial, sans-serif;
+  font-weight:200;
+  font-size:25px;
+  width:92%;
+  aspect-ratio: 1.59;
+  margin:auto;
+  position:absolute;
+  left:0;
+  right:0;
+
+  .buckeyes {
+	height:auto;
+  }
+}
+
+.card-large {
+  @extend %card-holder;
+  top: -20px;
+
+  /*.button {
+	box-shadow: 0 0 10px rgba(128, 128, 128, 0.7);
+  }*/
+}
+
+.button-wrap {
+  @extend %card-holder;
+  bottom:-80px;
+  .button.expanded {
+	&:nth-of-type(1){
+	  transform:translateY(-30px);
+	}
+	&:nth-of-type(2){
+	  transform:translateY(-130px);
+	  width:100%;
+	}
+	&:nth-of-type(3){
+	  transform:translateY(-230px);
+	  width:100%;
+	}
+	&:nth-of-type(4){
+	  transform:translateY(-330px);
+	  width:100%;
+	}
+  }
+
+}
+
+.nfc {
+  position: absolute;
+  top: 36%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 45%;
+}
+
+.button {
+  height:100%;
+  width:100%;
+  line-height:75px;
+  text-align:center;
+  position:absolute;
+  margin:auto;
+  left:0;
+  right:0;
+  //box-shadow: 2px 2px 2px rgba(0,0,0,.2);
+
+  &:hover {
+	cursor:pointer;
+  }
+  &:first-of-type {
+	z-index:4;
+	top:50px;
+  }
+  &:nth-of-type(2) {
+	z-index:3;
+	top:30px;
+	width:95%;
+  }
+  &:nth-of-type(3) {
+	z-index:2;
+	top:10px;
+	width:90%;
+  }
+  &:nth-of-type(4) {
+	z-index:1;
+	top:-10px;
+	width:85%;
+	//box-shadow:none;
+  }
+}
+
+.button:not(.buckeyes){
+  border-radius:13px;
+}
+
+.ticket-extras {
+  position: absolute;
+  top: 75%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 90%;
+  display: none;
+
+  hr {
+	border-color: #101010;
+  }
+
+  img {
+	width: 6%;
+	aspect-ratio: 1;
+	position: absolute;
+	right: 0;
+  }
+}
+
+.grey {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background: radial-gradient(circle, rgba(80,80,80,1) 3%, rgba(30,30,30,1) 99%);
+  height:4%;
+  z-index: 999;
+}
+
+form {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 20px;
+  line-height: 1.5;
+
+  .header {
+	text-align: center;
+  }
+
+  input {
+	background: #ababab;
+	color: black;
+	padding: 5px;
+	border-radius: 5px;
+  }
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Apple Pay</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+</head>
+<body>
+    <form id="form">
+        <h1 class="header">
+            Buckeyes Football<br />
+            Apple Pay
+        </h1>
+        <br />
+
+        <h2>Game Info</h2>
+        Opponent: <input type="text" name="opponent" id="opponent" value="Maryland" size="15" /><br />
+        Date: <input type="datetime-local" name="date" id="date" value="2023-10-07T12:00" step="60" /><br />
+        <br />
+
+        <h2>Seat Info</h2>
+        Section: <input type="text" name="section" id="section" value="4A" size="3" /><br />
+        Row: <input type="text" name="row" id="row" value="13" size="2" /><br />
+        Seat: <input type="text" name="seat" id="seat" value="14" size="2" /><br />
+        Gate: <input type="text" name="gate" id="gate" value="ENTER GATE 8" size="15" /><br />
+        <br />
+
+        <input type="submit" name="submit" value="Generate!" />
+    </form>
+
+    <div class="hide">
+        <canvas id="buckeyes" class="button buckeyes" width="1072" height="1145"></canvas>
+        <div class="container">
+            <div class="card-large">
+                <img src="images/amex.png" class="button amex" />
+            </div>
+
+            <img src="images/NFC.gif" class="nfc" />
+
+            <div class="button-wrap">
+                <img class="button buckeyes" id="buck_img"/>
+                <img src="images/cff.png" class="button" />
+                <img src="images/usbank.png" class="button" />
+            </div>
+
+            <div class="ticket-extras">
+                <hr />
+                <img src="images/info.png" />
+            </div>
+            <div class="grey"></div>
+        </div>
+    </div>
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    <script src="moment.min.js"></script>
+    <script src="wallet.js"></script>
+</body>
+</html>
