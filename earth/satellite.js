@@ -15,7 +15,7 @@ function resizeCanvas() {
 
 // Function to load the image in the background
 function loadImage() {
-    img.src = "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/1808x1808.jpg?" + new Date().getTime(); // Cache busting with timestamp
+    img.src = "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/10848x10848.jpg?" + new Date().getTime(); // Cache busting with timestamp
     img.onload = () => {
         displayImage(img);
     };
