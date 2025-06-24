@@ -35,6 +35,8 @@ function displayImage(img) {
 
     // Draw the image on the canvas
     ctx.drawImage(img, 0, 0, img.width, img.height, x, y, img.width * scaleFactor, img.height * scaleFactor);
+
+    setTimeout(loadImage, 300000);
 }
 
 // Adjust the canvas size and redraw the image whenever the window is resized
@@ -43,6 +45,3 @@ resizeCanvas();
 
 // Load the image for the first time
 loadImage();
-
-// Load the image every 30 seconds
-setInterval(loadImage, 300000); // 30000 milliseconds = 30 seconds
