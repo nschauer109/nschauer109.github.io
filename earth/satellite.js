@@ -48,7 +48,7 @@ function displayImage(img) {
     // Draw the image on the canvas
     ctx.drawImage(img, 0, 0, img.width, img.height, x, y, img.width * scaleFactor, img.height * scaleFactor);
 
-    setTimeout(loadImage, 800000);
+    setTimeout(loadImage, 600000);
 }
 
 // Adjust the canvas size and redraw the image whenever the window is resized
