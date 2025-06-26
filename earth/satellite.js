@@ -34,7 +34,7 @@ async function loadImage() {
 // ------------------------------------------------------------
 function scheduleNext() {
   clearTimeout(timerId);
-  timerId = setTimeout(loadImage, 300_000);  // 5 minutes
+  timerId = setTimeout(loadImage, 90_000);  // 5 minutes
 }
 
 // ------------------------------------------------------------
