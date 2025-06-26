@@ -22,7 +22,7 @@ resizeCanvas();             // initial size set‑up
 // Helper: pick URL & cache‑buster
 // ------------------------------------------------------------
 function nextUrl() {
-  const fullDisk  = 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg';
+  const fullDisk  = 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/1808x1808.jpg';// 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg';
   const regional  = 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/cgl/14/1200x1200.jpg';
   const chosen    = state ? regional : fullDisk;
   state ^= 1;                          // toggle 0 ⇄ 1
@@ -34,6 +34,11 @@ function nextUrl() {
 // ------------------------------------------------------------
 async function loadImage() {
   try {
+    if (currentBitmap) {
+      currentBitmap.close();       // frees GPU texture immediately
+      currentBitmap = null;
+    }
+    
     const resp  = await fetch(nextUrl(), { mode: 'cors' });
     const blob  = await resp.blob();
 
