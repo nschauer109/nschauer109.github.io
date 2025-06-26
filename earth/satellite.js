@@ -4,6 +4,8 @@ const ctx = canvas.getContext('2d');
 let img = new Image();
 img.crossOrigin = "anonymous"; // Allow loading the image from a different origin
 
+let state = 0;
+
 // Function to set canvas to fullscreen and redraw the image
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -15,7 +17,17 @@ function resizeCanvas() {
 
 // Function to load the image in the background
 function loadImage() {
-    img.src = "https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg?" + new Date().getTime(); // Cache busting with timestamp
+    switch(state){
+        case 0:
+            img.src = "https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg?" + new Date().getTime();
+            state = 1;
+            break;
+        case 1:
+            img.src = "https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/cgl/14/1200x1200.jpg?" + new Date().getTime();
+            state = 0;
+            break;
+    }
+    //img.src = "https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg?" + new Date().getTime(); // Cache busting with timestamp
     img.onload = () => {
         displayImage(img);
     };
