@@ -1,7 +1,9 @@
-const canvas = document.getElementById('satelliteCanvas');
-const ctx    = canvas.getContext('2d');
+//const canvas = document.getElementById('satelliteCanvas');
+//const ctx    = canvas.getContext('2d');
 
-let currentBitmap = null;   // last successfully decoded frame
+const img    = document.getElementById('sat');
+
+//let currentBitmap = null;   // last successfully decoded frame
 let state         = 0;      // 0 = full‑disk, 1 = regional
 let timerId       = null;   // single refresh timer
 
@@ -34,27 +36,31 @@ function nextUrl() {
 // ------------------------------------------------------------
 async function loadImage() {
   try {
-    if (currentBitmap) {
-      currentBitmap.close();       // frees GPU texture immediately
-      currentBitmap = null;
-    }
+    const url = nextUrl();
+    img.src = url;
+    // if (currentBitmap) {
+    //   currentBitmap.close();       // frees GPU texture immediately
+    //   currentBitmap = null;
+    // }
     
-    const resp  = await fetch(nextUrl(), { mode: 'cors' });
-    const blob  = await resp.blob();
+    // const resp  = await fetch(nextUrl(), { mode: 'cors' });
+    // const blob  = await resp.blob();
 
-    // decode directly to viewport‑sized bitmap
-    const bitmap = await createImageBitmap(blob, {
-      resizeWidth:  Math.min(canvas.width, canvas.height),
-      resizeHeight: Math.min(canvas.width, canvas.height),
-      resizeQuality: 'high',
-    });
+    // // decode directly to viewport‑sized bitmap
+    // const bitmap = await createImageBitmap(blob, {
+    //   resizeWidth:  Math.min(canvas.width, canvas.height),
+    //   resizeHeight: Math.min(canvas.width, canvas.height),
+    //   resizeQuality: 'high',
+    // });
 
-    currentBitmap = bitmap;
-    draw(bitmap);
+    // currentBitmap = bitmap;
+    // draw(bitmap);
     scheduleNext();              // after successful draw
   } catch (err) {
     console.error('loadImage failed:', err);
-    scheduleNext();              // retry after interval anyway
+  }
+  } finally {
+    timerId = setTimeout(load, 300_000);
   }
 }
 
