@@ -30,6 +30,7 @@ function loadImage() {
     //img.src = "https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg?" + new Date().getTime(); // Cache busting with timestamp
     img.onload = () => {
         displayImage(img);
+        setTimeout(loadImage, 300000);
     };
 }
 
@@ -47,8 +48,6 @@ function displayImage(img) {
 
     // Draw the image on the canvas
     ctx.drawImage(img, 0, 0, img.width, img.height, x, y, img.width * scaleFactor, img.height * scaleFactor);
-
-    setTimeout(loadImage, 300000);
 }
 
 // Adjust the canvas size and redraw the image whenever the window is resized
