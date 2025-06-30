@@ -1,43 +1,32 @@
-const img    = document.getElementById('sat');
+const img   = document.getElementById('sat');
 
-//let currentBitmap = null;   // last successfully decoded frame
-let state         = 0;      // 0 = full‑disk, 1 = regional
-let timerId       = null;   // single refresh timer
+  // ————————————————————————————————
+  // 1 · Restore last state (0 = full-disk, 1 = regional)
+  // ————————————————————————————————
+  let state = Number(sessionStorage.getItem('state') ?? 0);
 
-// ------------------------------------------------------------
-// Helper: pick URL & cache‑buster
-// ------------------------------------------------------------
-function nextUrl() {
-  const fullDisk  = 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/1808x1808.jpg';// 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/10848x10848.jpg';
-  const regional  = 'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/cgl/14/1200x1200.jpg';
-  const chosen    = state ? regional : fullDisk;
-  state ^= 1;                          // toggle 0 ⇄ 1
-  return `${chosen}?t=${Date.now()}`;  // bust cache
-}
-
-// ------------------------------------------------------------
-// Load, down‑scale on decode, then draw
-// ------------------------------------------------------------
-async function loadImage() {
-  try {
-    const url = nextUrl();
-    img.src = url;
-  } catch (err) {
-    console.error('loadImage failed:', err);
-  } finally {
-    scheduleNext();
+  // ————————————————————————————————
+  // 2 · Pick URL + cache-buster
+  // ————————————————————————————————
+  function currentUrl() {
+    const urls = [
+      'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/FD/GEOCOLOR/1808x1808.jpg',
+      'https://corsproxy.io/?url=https://cdn.star.nesdis.noaa.gov/GOES19/ABI/SECTOR/cgl/14/1200x1200.jpg'
+    ];
+    return `${urls[state]}?t=${Date.now()}`;   // defeat browser cache
   }
-}
 
-// ------------------------------------------------------------
-// Single‑shot timer management
-// ------------------------------------------------------------
-function scheduleNext() {
-  clearTimeout(timerId);
-  timerId = setTimeout(loadImage, 90_000);  // 5 minutes
-}
+  // ————————————————————————————————
+  // 3 · Display, toggle, persist, schedule reload
+  // ————————————————————————————————
+  function showImage() {
+    img.src = currentUrl();
 
-// ------------------------------------------------------------
-// Kick things off
-// ------------------------------------------------------------
-loadImage();
+    state ^= 1;                                // flip 0 ⇄ 1
+    sessionStorage.setItem('state', state);    // remembered on next load
+
+    setTimeout(() => location.reload(), 90_000);
+  }
+
+  // Kick off immediately (DOMContentLoaded safe if this <script> is in <head>)
+  showImage();
