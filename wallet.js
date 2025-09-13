@@ -4,19 +4,19 @@ function runWallet(opponent, section, row, seat, gate, date, time){
     let imageObj = new Image();
     imageObj.onload = function(){
         context.drawImage(imageObj, 0, 0);
-        context.font = "47pt -apple-system, BlinkMacSystemFont, Helvetica, sans-serif";
+        context.font = "45pt -apple-system, BlinkMacSystemFont, Helvetica, sans-serif";
         context.fillStyle = 'white';
 
         //using global vars from form
-        context.fillText(date, 700, 130);
+        context.fillText(date, 690, 130);
         context.fillText(opponent, 345, 595);
         context.fillText(section, 45, 735);
         context.fillText(row, 530, 735);
         context.fillText(seat, 950, 735);
         
 
-        context.font = "30pt -apple-system, BlinkMacSystemFont, Helvetica, sans-serif";
-        context.fillText(time, 700, 65);
+        context.font = "28pt -apple-system, BlinkMacSystemFont, Helvetica, sans-serif";
+        context.fillText(time, 690, 65);
         context.fillText(gate, 45, 862);
 
         let imgSrc = canvas.toDataURL("image/png");
