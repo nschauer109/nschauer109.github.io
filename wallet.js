@@ -23,7 +23,7 @@ function runWallet(opponent, section, row, seat, gate, date, time){
         $('#buck_img').attr('src', imgSrc);
         canvas.style.display = "none";
     };
-    imageObj.src = "images/buckeyes.png";
+    imageObj.src = "images/buckeyes.png?v=1.0.69";
 }
 
 let state = 0;
