@@ -13,10 +13,11 @@ function runWallet(opponent, section, row, seat, gate, date, time){
         context.fillText(section, 45, 735);
         context.fillText(row, 530, 735);
         context.fillText(seat, 950, 735);
-        context.fillText(gate, 45, 880);
+        
 
         context.font = "30pt -apple-system, BlinkMacSystemFont, Helvetica, sans-serif";
-        context.fillText(time, 860, 65);
+        context.fillText(time, 700, 65);
+        context.fillText(gate, 45, 862);
 
         let imgSrc = canvas.toDataURL("image/png");
         $('#buck_img').attr('src', imgSrc);
